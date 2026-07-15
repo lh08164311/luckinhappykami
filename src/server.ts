@@ -85,9 +85,10 @@ app.use(errorHandler);
 
 // 启动服务器
 const PORT = config.server.port;
-app.listen(PORT, () => {
+const HOST = '0.0.0.0';
+app.listen(PORT, HOST, () => {
   console.log(`🚀 ${config.app.name} v${config.app.version}`);
-  console.log(`📡 服务器运行在 http://localhost:${PORT}`);
+  console.log(`📡 服务器运行在 http://${HOST}:${PORT}`);
   console.log(`🌍 环境: ${config.server.nodeEnv}`);
   console.log(`📊 数据库: ${config.database.path}`);
 });

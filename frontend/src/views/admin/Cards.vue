@@ -456,10 +456,27 @@ const handleSelectionChange = (selection: Card[]) => {
 
 const copyCardKey = async (cardKey: string) => {
   try {
-    await navigator.clipboard.writeText(cardKey)
+    // 优先使用 Clipboard API（需要安全上下文：HTTPS 或 localhost）
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(cardKey)
+    } else {
+      // 降级方案：使用 execCommand（适用于非安全上下文，如 http://IP 访问）
+      const textArea = document.createElement('textarea')
+      textArea.value = cardKey
+      textArea.style.position = 'fixed'
+      textArea.style.left = '-9999px'
+      textArea.style.top = '-9999px'
+      document.body.appendChild(textArea)
+      textArea.focus()
+      textArea.select()
+      const successful = document.execCommand('copy')
+      document.body.removeChild(textArea)
+      if (!successful) throw new Error('execCommand failed')
+    }
     ElMessage.success('卡密已复制到剪贴板')
   } catch (error) {
-    ElMessage.error('复制失败')
+    console.error('复制失败:', error)
+    ElMessage.error('复制失败，请手动复制')
   }
 }
 

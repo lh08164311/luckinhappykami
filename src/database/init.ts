@@ -137,7 +137,7 @@ async function initializeDatabase() {
       ['contact_qq_group', '123456789'],
       ['contact_wechat_qr', 'assets/images/wechat-qr.jpg'],
       ['contact_email', 'support@example.com'],
-      ['api_enabled', '0']
+      ['api_enabled', '1']
     ];
 
     for (const [name, value] of defaultSettings) {
