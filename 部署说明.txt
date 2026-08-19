@@ -18,6 +18,6 @@ cp .env.example .env
 npm run init-db
 
 宝塔部署 使用默认项目
-启动选项会自动选择 npm run  dev命令
+启动选项会自动选择 npm run dev命令
 
 5173端口
