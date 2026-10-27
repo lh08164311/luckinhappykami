@@ -16,7 +16,7 @@
     "removeComments": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "types": ["node"]
+    "types": ["node", "jest"]
   },
   "include": [
     "src/**/*"
